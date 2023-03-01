@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.features {
+  padding: 5rem;
+}
+
+.spacing {
+  padding-top: 5rem;
+}
