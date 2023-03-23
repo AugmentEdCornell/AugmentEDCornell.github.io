@@ -17,8 +17,8 @@ function Login () {
     }
 
     let nav = useNavigate(); 
-    const product = () => { 
-        let path = '/product'; 
+    const catalog = () => { 
+        let path = '/catalog'; 
         nav(path);
     }
 
@@ -43,7 +43,7 @@ function Login () {
                         <p>Forgot Password?</p>
                     </Form.Group>
       
-                    <Button onClick={product} className="mt-5 ms-auto me-auto ps-4 pe-4 pt-2 pb-2 loginButton" type="submit">
+                    <Button onClick={catalog} className="mt-5 ms-auto me-auto ps-4 pe-4 pt-2 pb-2 loginButton" type="submit">
                         Login
                     </Button>
                 </Form>

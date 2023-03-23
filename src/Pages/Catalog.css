@@ -1,0 +1,51 @@
+* {
+    font-family: "Montserrat";
+}
+
+.heading  {
+    font-weight: 700;
+    color: gray;
+    white-space: nowrap;
+    padding-top: 5rem;
+    padding-left: 5rem;
+}
+
+.topic {
+    box-shadow: 0px 4px 4px rgba(26, 7, 138, 0.15);
+    position: relative;
+    cursor: pointer;
+}
+
+.topic:hover {
+    background-color: #ececec;
+}
+
+.topicImage {
+    height: 200px;
+    width: 200px;
+}
+
+.locked {
+    background-color: D9D9D9;
+    opacity: 0.5;
+    box-shadow: 0px 4px 4px rgba(26, 7, 138, 0.15);
+    position: relative;
+    cursor: pointer;
+}
+
+.lock {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.edButton {
+    display: block;
+    background-color: black;
+    border: none;
+    white-space: nowrap;
+    width: auto;
+    margin-left: 4rem;
+}

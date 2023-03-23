@@ -1,0 +1,23 @@
+* {
+    font-family: "Montserrat";
+}
+
+.heading  {
+    font-weight: 700;
+    color: black;
+    white-space: nowrap;
+    padding-top: 5rem;
+    padding-left: 5rem;
+}
+
+.edLoginButton {
+    display: block;
+    background-color: black;
+    border: none;
+    white-space: nowrap;
+    width: auto;
+}
+
+.pin {
+    width: 500px;
+}
