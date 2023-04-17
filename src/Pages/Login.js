@@ -7,6 +7,9 @@ import Image from "react-bootstrap/Image";
 import { useNavigate } from "react-router-dom";
 import './Login.css'
 import Google from './components/assets/google.png'
+import { auth } from './firebase.js'
+import { signInWithEmailAndPassword } from "firebase/auth";
+
 
 function Login () {
 
@@ -17,15 +20,44 @@ function Login () {
     }
 
     let nav = useNavigate(); 
-    const catalog = () => { 
-        let path = '/catalog'; 
-        nav(path);
-    }
+    const catalog = (e) => { 
+        e.preventDefault();
+        const form = document.getElementById("loginForm")
+        const email = form.elements.emailAddress.value
+        const password = form.elements.password.value
 
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential => {
+                const user = userCredential.user
+                console.log(user)
+                let path = '/catalog'; 
+                nav(path);
+            }))
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+                if (errorCode === "auth/invalid-email") {
+                    alert("Invalid email address. Please check and enter again.")
+                }
+                else if (errorCode === "auth/user-not-found") {
+                    alert("Email address not registered. Please create a new account before proceeding.")
+                }
+                else if (errorCode === "auth/missing-password") {
+                    alert("Please enter password")
+                }
+                else if (errorCode === "auth/wrong-password") {
+                    alert("Incorrect password. Please check and try again.")
+                }
+                console.log(errorCode, errorMessage)
+            })
+        
+    }
+    
     return (
         <Container className="login">
             <Row>
-                <Form className="p-5">
+                <Form className="p-5" id="loginForm">
                     <Form.Group controlId="emailAddress">
                         <Form.Label>EMAIL ADDRESS</Form.Label>
                         <Form.Control type="email" placeholder="Enter E-mail Address" />

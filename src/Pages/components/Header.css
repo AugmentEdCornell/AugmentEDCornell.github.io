@@ -33,3 +33,10 @@
     border: none;
     white-space: nowrap;
 }
+
+.logout {
+    vertical-align: middle;
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+}
