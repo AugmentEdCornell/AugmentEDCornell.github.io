@@ -12,16 +12,16 @@ import Edboard from './Pages/Edboard';
 function App () {
   return (
     <>
-    <Header />
-    <Routes>
-      <Route path='/' element={<Core />}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/register' element={<Register />} />
-      <Route path='/catalog' element={<Catalog />} />
-      <Route path='/edboardLogin' element={<EdboardLogin />} />
-      <Route path='/edboard' element={<Edboard />} />
-      <Route path='/product' element={<Product />} />
-    </Routes>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Core />}/>
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register />} />
+        <Route path='/catalog' element={<Catalog />} />
+        <Route path='/edboardLogin' element={<EdboardLogin />} />
+        <Route path='/edboard' element={<Edboard />} />
+        <Route path='/product' element={<Product />} />
+      </Routes>
     </>
   );
 }
