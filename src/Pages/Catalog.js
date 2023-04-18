@@ -18,8 +18,7 @@ function Catalog () {
     }
 
     const product = () => { 
-        let path = '/product';
-        nav(path);
+        window.open("/UnityWebApp", "_blank")
     }
     return (
         <Container fluid>
