@@ -5,7 +5,8 @@ import Button from "react-bootstrap/Button";
 import { useNavigate } from "react-router-dom";
 import './Register.css'
 import SubscriptionPlans from "./components/SubscriptionPlans";
-import { auth } from './firebase.js'
+import { auth, db} from './firebase.js'
+import { ref, set } from 'firebase/database';
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 
@@ -15,45 +16,58 @@ function Register () {
     const login = (e) => { 
         e.preventDefault();
         const form = document.getElementById("registerForm")
+        const firstName = form.elements.firstName.value
+        const lastName = form.elements.lastName.value
         const accountType = form.elements.accountType.value
         const emailAddress = form.elements.emailAddress.value
         const password = form.elements.password.value
         const confirmPassword = form.elements.confirmPassword.value
         const subscriptionType = form.elements.subscriptionType.value
         const updates = form.elements.updates.value
-
-        if (password === confirmPassword) {
-            createUserWithEmailAndPassword(auth, emailAddress, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    console.log(user)
-                    console.log(accountType, emailAddress, password, confirmPassword, subscriptionType, updates)
-                    let path = '/catalog'; 
-                    navigate(path);
-            })
-                .catch((error) => {
-                    const errorCode = error.code;
-                    const errorMessage = error.message;
-                    if (errorCode === "auth/email-already-in-use") {
-                        alert("Email already exists. Please login or choose a different email address.")
-                    }
-                    else if (errorCode === "auth/weak-password") {
-                        alert("Password must be alteast 6 characters.")
-                    }
-                    else if (errorCode === "auth/missing-password") {
-                        alert("Please enter password")
-                    }
-                    else if (errorCode === "auth/invalid-email") {
-                        alert("Invalid email address. Please check and enter again.")
-                    }
-                    else {
-                        alert(errorCode, errorMessage)
-                    }
-                    console.log(errorCode, errorMessage)
-            });
+        if (firstName === "") {
+            alert("Please enter first name.")
+        }
+        else if (lastName === "") {
+            alert("Please enter last name.")
         }
         else {
-            alert("Passwords do not match. Please check and enter again.")
+            if (password === confirmPassword) {
+                createUserWithEmailAndPassword(auth, emailAddress, password)
+                    .then((userCredential) => {
+                        set(ref(db, 'Augmented Users/' + firstName + " " + lastName), {
+                            accountType: accountType,
+                            emailAddress: emailAddress,
+                            subscriptionType: subscriptionType,
+                            updates: updates
+                        })
+                        console.log(firstName, lastName, accountType, emailAddress, password, confirmPassword, subscriptionType, updates)
+                        let path = '/catalog'; 
+                        navigate(path);
+                })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        if (errorCode === "auth/email-already-in-use") {
+                            alert("Email already exists. Please login or choose a different email address.")
+                        }
+                        else if (errorCode === "auth/weak-password") {
+                            alert("Password must be alteast 6 characters.")
+                        }
+                        else if (errorCode === "auth/missing-password") {
+                            alert("Please enter password")
+                        }
+                        else if (errorCode === "auth/invalid-email") {
+                            alert("Invalid email address. Please check and enter again.")
+                        }
+                        else {
+                            alert(error)
+                        }
+                        console.log(errorCode, errorMessage)
+                });
+            }
+            else {
+                alert("Passwords do not match. Please check and enter again.")
+            }
         }
     }
 
@@ -72,7 +86,18 @@ function Register () {
             <Container className="register mt-5 mb-5">
                 <Row>
                     <Form className="p-5" id="registerForm">
-                        <Form.Group controlId="accountType">
+
+                        <Form.Group controlId="firstName">
+                            <Form.Label>FIRST NAME</Form.Label>
+                            <Form.Control type="text" placeholder="First name" />
+                        </Form.Group>
+
+                        <Form.Group className="mt-3" controlId="lastName">
+                            <Form.Label>LAST NAME</Form.Label>
+                            <Form.Control type="text" placeholder="Last name" />
+                        </Form.Group>
+
+                        <Form.Group className="mt-3" controlId="accountType">
                             <Form.Label>ACCOUNT TYPE</Form.Label>
                             <Form.Select>
                                 <option>Educator</option>
