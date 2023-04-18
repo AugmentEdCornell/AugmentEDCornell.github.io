@@ -7,9 +7,8 @@ import Image from "react-bootstrap/Image";
 import { useNavigate } from "react-router-dom";
 import './Login.css'
 import Google from './components/assets/google.png'
-import { auth } from './firebase.js'
-import { signInWithEmailAndPassword } from "firebase/auth";
-
+import { auth, provider } from './firebase.js'
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 function Login () {
 
@@ -51,7 +50,27 @@ function Login () {
                 }
                 console.log(errorCode, errorMessage)
             })
-        
+    }
+
+    const googleSignIn = () => {
+        console.log("GSign")
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                const user = result.user;
+                console.log(token, user)
+                let path = '/interestForm'; 
+                nav(path);
+
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                const email = error.customData.email;
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                console.log(errorCode, errorMessage, email, credential)
+            })
     }
     
     return (
@@ -72,7 +91,7 @@ function Login () {
                     </Form.Group>
 
                     <Form.Group className="mt-3 text-end">
-                        <p>Forgot Password?</p>
+                        <a href='/forgotPassword'>Forgot Password?</a>
                     </Form.Group>
       
                     <Button onClick={catalog} className="mt-5 ms-auto me-auto ps-4 pe-4 pt-2 pb-2 loginButton" type="submit">
@@ -83,7 +102,7 @@ function Login () {
             <Row>
                 <p className="text-center"><b>OR</b></p>
             </Row>
-            <Row className="m-5 justify-content-center">
+            <Row className="m-5 googleSignIn justify-content-center" onClick={googleSignIn}>
                 <Col md="auto">
                     <Image src={Google} className="google" />
                 </Col>

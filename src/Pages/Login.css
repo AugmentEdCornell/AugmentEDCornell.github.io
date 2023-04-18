@@ -35,3 +35,7 @@
     white-space: nowrap;
     vertical-align: middle;
 }
+
+.googleSignIn {
+    cursor: pointer;
+}
