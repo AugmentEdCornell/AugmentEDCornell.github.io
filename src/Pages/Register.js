@@ -34,7 +34,9 @@ function Register () {
             if (password === confirmPassword) {
                 createUserWithEmailAndPassword(auth, emailAddress, password)
                     .then((userCredential) => {
-                        set(ref(db, 'Augmented Users/' + firstName + " " + lastName), {
+                        set(ref(db, 'Augmented Users/' + userCredential.user.uid), {
+                            firstName: firstName,
+                            lastName: lastName,
                             accountType: accountType,
                             emailAddress: emailAddress,
                             subscriptionType: subscriptionType,

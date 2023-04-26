@@ -30,7 +30,9 @@ function InterestForm () {
             alert("Please enter last name.")
         }
         else {
-            set(ref(db, 'Augmented Users/' + firstName + " " + lastName), {
+            set(ref(db, 'Augmented Users/' + auth.currentUser.uid), {
+                firstName: firstName,
+                lastName: lastName,
                 accountType: accountType,
                 emailAddress: emailAddress,
                 subscriptionType: subscriptionType,

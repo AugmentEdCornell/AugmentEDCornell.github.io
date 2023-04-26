@@ -5,8 +5,8 @@ import './Testimonials.css'
 
 function Testimonial (props) {
     return (
-        <Col className='testimonial text-center p-5 m-5'>
-            <p>"{props.quote}"</p>
+        <Col className='testimonial p-4 m-5'>
+            <p><b><i>"{props.quote}"</i></b></p>
         </Col>
     );
 }
@@ -15,10 +15,10 @@ function Testimonials () {
     return (
         <Container fluid className='p-3 back'>
             <Row>
-                <Testimonial quote="Testimonial 1"/>
-                <Testimonial quote="Testimonial 2"/>
-                <Testimonial quote="Testimonial 3"/>
-                <Testimonial quote="Testimonial 4"/>
+                <Testimonial quote="Terrific product idea! I wish I had something like this in school"/>
+                <Testimonial quote="Would have loved if something like existed in my school years."/>
+                <Testimonial quote="AugmentED will definitely make it easier for me to teach complex science and math."/>
+                <Testimonial quote="Really promising product, eager to see how the product develops and grows"/>
             </Row>
         </Container>
     );
