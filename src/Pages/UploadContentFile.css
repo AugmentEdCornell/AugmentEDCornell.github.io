@@ -1,0 +1,11 @@
+* {
+    font-family: 'Montserrat';
+}
+
+.ucHeader  {
+    font-weight: 700;
+    color: gray;
+    white-space: nowrap;
+    margin-top: 7rem;
+    margin-left: 3rem;
+}

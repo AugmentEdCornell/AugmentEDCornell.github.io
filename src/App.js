@@ -9,7 +9,7 @@ import EdboardLogin from './Pages/EdboardLogin';
 import Edboard from './Pages/Edboard';
 import InterestForm from './Pages/InterestForm';
 import ForgotPassword from './Pages/ForgotPassword';
-
+import UploadContentFile from './Pages/UploadContentFile';
 
 function App () {
   return (
@@ -25,6 +25,7 @@ function App () {
         <Route path='/edboardLogin' element={<EdboardLogin />} />
         <Route path='/edboard' element={<Edboard />} />
         <Route path='/product' element={<Product />} />
+        <Route path='/uploadFile' element={<UploadContentFile />} />
       </Routes>
     </>
   );
