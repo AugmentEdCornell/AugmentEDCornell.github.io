@@ -42,7 +42,7 @@ function UploadContentFile () {
             </Row>
             <Row>
                 <h1 className="qcHeader">Quiz on Content</h1>
-                <div className="mt-3 ms-5">
+                <div className="quizData mb-5 mt-3 ms-5">
                     {getQuiz.status === 200 ? 
                         <p>
                             {getQuiz.data}
