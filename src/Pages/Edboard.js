@@ -2,14 +2,22 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image";
+import Button from "react-bootstrap/Button";
 import cell from './components/assets/cell.png'
 import digestive_system from './components/assets/digestive-system.png'
 import lock from './components/assets/padlock.png'
 import stats from './components/assets/bar-chart.png'
 import './Edboard.css'
+import { useNavigate } from "react-router-dom";
 
 function Edboard () {
 
+    let path = ""
+    let nav = useNavigate();
+    const uploadFile = () => {
+        path = "/uploadFile"
+        nav(path)
+    }
     return (
         <Container fluid> 
             <Row>
@@ -30,6 +38,11 @@ function Edboard () {
                             <Image src={digestive_system} alt="Digestive System" fluid/>
                             <p className="text-center mt-3"><b>Digestive System</b></p>
                         </Col>
+                    </Row>
+                    <Row>
+                        <Button className="m-5 fileButton" onClick={uploadFile} >
+                            Upload Content File
+                        </Button>
                     </Row>
                 </Col>
                 <Col>

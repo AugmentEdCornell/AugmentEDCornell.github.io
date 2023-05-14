@@ -52,3 +52,11 @@
     max-height: 180px;
     max-width: 150px;;
 }
+
+.fileButton {
+    display: block;
+    background-color: black;
+    border: none;
+    white-space: nowrap;
+    width: auto;
+}
